@@ -9,7 +9,7 @@ public class PlayerBehaviour : MonoBehaviour
     public Joystick leftStick;
 
     // Movement Properties
-    [Header("Movement")] 
+    [Header("Movement")]
     public float maxSpeed = 10.0f;
     public float gravity = -30.0f;
     public float jumpHeight = 3.0f;
@@ -22,15 +22,22 @@ public class PlayerBehaviour : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
-    [Header("Character Controller")] 
+    [Header("Character Controller")]
     public CharacterController controller;
 
-    [Header("MiniMap")] 
+    [Header("MiniMap")]
     public GameObject miniMapBorder;
 
-    [Header("Selection Properties")] 
+    [Header("Selection Properties")]
     public Transform playerCamera;
     public Material selectable;
+
+    [Header("Control Panel")]
+    public GameObject controlPanel;
+
+    [Header("Player Attributes")]
+    public HealthBar healthBar;
+    public int health = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +94,8 @@ public class PlayerBehaviour : MonoBehaviour
         {
             miniMapBorder.SetActive(!miniMapBorder.activeInHierarchy);
         }
+
+        healthBar.SetHealth(health);
     }
 
     void OnDrawGizmos()
@@ -104,5 +113,10 @@ public class PlayerBehaviour : MonoBehaviour
     public void onBButtonPressed()
     {
         miniMapBorder.SetActive(!miniMapBorder.activeInHierarchy);
+    }
+
+    public void onIButtonPressed()
+    {
+        controlPanel.SetActive(!controlPanel.activeInHierarchy);
     }
 }
